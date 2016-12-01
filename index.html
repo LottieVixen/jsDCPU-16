@@ -6,6 +6,7 @@
 <body>
 <div id="debug"></div>
 <script>
+const image = 'mem-binary';
 //define debug
 const divDebug = document.querySelector('#debug'),
     debug = (text) => {
@@ -13,18 +14,22 @@ const divDebug = document.querySelector('#debug'),
     };
 
 //define cpu class
-class cpu {
+class CPU {
 	runProgram(program) {
         let dvInstruction = new DataView(program),
             instruction;
 
-        for (let i = 0; i <= 256; i+= Uint32Array.BYTES_PER_ELEMENT) {
-            instruction = dvInstruction.getUint32(i * Uint32Array.BYTES_PER_ELEMENT, true);
+        for (let i = 0; i <= 10; i+= Uint16Array.BYTES_PER_ELEMENT) {
+            instruction = dvInstruction.getUint16(i * Uint16Array.BYTES_PER_ELEMENT, true);
+            instruction = 	33793;
 
             debug(instruction.toString(2));
+            debug((instruction&31).toString(2)); //get first 5 bits
+            debug(((instruction>>5)&31).toString(2)); //get second 5 bits
+            debug(((instruction>>10)&63).toString(2)); //get last 6 bits
 
             let type = 'invalid';
-
+            /* Not yet implimented
             for (let ins in INSTRUCTIONS) {
                 //debug('checking for '+ins)
                 let bm0 = INSTRUCTIONS[ins][0],
@@ -52,6 +57,7 @@ class cpu {
                 this[type](instruction);
 
             debug(type + ' ' + cond);
+            */
         }
     }
 };
@@ -61,11 +67,14 @@ var ab2str = (buf) => {
 }
 
 //fetch init-memory
-fetch('mem-binary')
+fetch(image)
     .then((response) => response.arrayBuffer())
     .then((arrayBuffer) => {
+    	debug(`Loaded memory from ${image}, starting CPU.`);
+    	cpu = new CPU();
         console.log(ab2str(arrayBuffer));
-
+        debug('Started CPU, running from memory.');
+        cpu.runProgram(arrayBuffer);
     }).catch((err) => console.log(err));
 </script>
 </body>
