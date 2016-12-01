@@ -12,7 +12,12 @@ const divDebug = document.querySelector('#debug'),
     debug = (text) => {
         divDebug.innerHTML += text+'<br/>';
     };
-
+/*program in 16bit lines
+  1000010000000001
+  1000010000000001
+  1000010000000001
+  1000011110000001
+*/
 //define cpu class
 class CPU {
 	runProgram(program) {
@@ -21,7 +26,7 @@ class CPU {
 
         for (let i = 0; i <= 10; i+= Uint16Array.BYTES_PER_ELEMENT) {
             instruction = dvInstruction.getUint16(i * Uint16Array.BYTES_PER_ELEMENT, true);
-            instruction = 	33793;
+            //instruction = 	33793;
 
             debug(instruction.toString(2));
             debug((instruction&31).toString(2)); //get first 5 bits
