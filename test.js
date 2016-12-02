@@ -18,13 +18,6 @@
 	function conv(hexin){
 	console.log('0x'+d2h(hexin)+':'+h2b(hexin));
 	}
-
-
-  //basic opcode set
-  /*
-
-  */
-
 	//conv(0x1c);
 	/*MEM
 	O    B    A
