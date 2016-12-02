@@ -34,7 +34,7 @@ class CPU {
         let dvInstruction = new DataView(program),
             instruction;
 
-        for (let i = 0; i <= 4; i+= Uint16Array.BYTES_PER_ELEMENT) {
+        for (let i = 0; i <= 4; i++) {
             instruction = dvInstruction.getUint16(i * Uint16Array.BYTES_PER_ELEMENT, true);
             //instruction = 	33793;
 
