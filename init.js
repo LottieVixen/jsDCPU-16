@@ -4,6 +4,12 @@ const divDebug = document.querySelector('#debug'),
     debug = (text) => {
         divDebug.innerHTML += text+'<br/>';
     };
+/*program in 16bit lines
+  1000010000000001
+  1000010000000001
+  1000010000000001
+  1000011110000001
+*/
 
 var ab2str = (buf) => {
   return String.fromCharCode.apply(null, new Uint8Array(buf));
