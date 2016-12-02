@@ -12,6 +12,11 @@ const divDebug = document.querySelector('#debug'),
 */
 //define cpu class
 class CPU {
+    constructor(){
+        this.regs = new Uint16Array(12); //8regs,pc,sp,ex,ia = 12 items/mem-locs
+        this.views = new Map(); //map, kv map (keyed array) for data views
+
+    }
 	runProgram(program) {
         let dvInstruction = new DataView(program),
             instruction;
