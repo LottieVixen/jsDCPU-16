@@ -6,7 +6,7 @@
 <body>
 <div id="debug"></div>
 <script>
-const image = 'mem-binary';
+const image = 'mem-bin';
 //define debug
 const divDebug = document.querySelector('#debug'),
     debug = (text) => {
@@ -24,16 +24,16 @@ class CPU {
         let dvInstruction = new DataView(program),
             instruction;
 
-        for (let i = 0; i <= 10; i+= Uint16Array.BYTES_PER_ELEMENT) {
+        for (let i = 0; i <= 11; i+= Uint16Array.BYTES_PER_ELEMENT) {
             instruction = dvInstruction.getUint16(i * Uint16Array.BYTES_PER_ELEMENT, true);
             //instruction = 	33793;
 
             debug(instruction.toString(2));
-            debug((instruction&31).toString(2)); //get first 5 bits
-            debug(((instruction>>5)&31).toString(2)); //get second 5 bits
-            debug(((instruction>>10)&63).toString(2)); //get last 6 bits
+            //debug((instruction&31).toString(2)); //get first 5 bits
+            //debug(((instruction>>5)&31).toString(2)); //get second 5 bits
+            //debug(((instruction>>10)&63).toString(2)); //get last 6 bits
 
-            let type = 'invalid';
+            //let type = 'invalid';
             /* Not yet implimented
             for (let ins in INSTRUCTIONS) {
                 //debug('checking for '+ins)
