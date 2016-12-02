@@ -1,4 +1,4 @@
-const image = 'mem-bin';
+const image = 'mem-hex';
 //define debug
 const divDebug = document.querySelector('#debug'),
     debug = (text) => {

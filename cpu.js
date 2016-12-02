@@ -3,6 +3,31 @@ class CPU {
     constructor(){
         this.regs = new Uint16Array(12); //8regs,pc,sp,ex,ia = 12 items/mem-locs
         this.views = new Map(); //map, kv map (keyed array) for data views
+       /* defineDVs(this, this.regs, {
+            'ra': 0,       //0x00
+            'rb': 1,
+            'rc': 2,
+            'rx': 3,
+            'ry': 4,
+            'rz': 5,
+            'ri': 6,       //0x07
+            'ra_mem': 7,   //0x08
+            'rb_mem': 8,
+            'rc_mem': 9,
+            'rx_mem': 10,
+            'ry_mem': 11,
+            'rz_mem': 12,
+            'ri_mem': 13,  //0x0F
+            'ra_nxwd' : 14,//0x10
+            'rb_nxwd' : 15,
+            'rc_nxwd' : 16,
+            'rx_nxwd' : 17,
+            'ry_nxwd' : 18,
+            'rz_nxwd' : 19,
+            'ri_nxwd' : 20,//0x17
+
+
+        });*/
 
     }
 	runProgram(program) {
