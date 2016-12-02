@@ -69,9 +69,14 @@ var partInst = (inst) => {
   return [a,b,o];
 };
 var main = () => {
+  var PC = 0;// program counter
+  //I know it should be a pointer but I need to work out how to impliment
+  //the registers
   //RAM = 65536(0x10000) 16bit words SO
   //                         2bytes * ram size
   var RAMbuffer = new ArrayBuffer(2 * 0x10000);
+  var RAMdv = new DataView(RAMbuffer);
+
   var setA  = 0x8401,
       setPC = 0x8781;
 
@@ -80,23 +85,25 @@ var main = () => {
                0x8401,
                0x8781];
 
+  //Changed to move program into ram
   //var instructionBuffer = new ArrayBuffer(array);
   //For some reason that didn't work so the long way around for the next 7 lines
-  var instructionBuffer = new ArrayBuffer(8); //4 Elements at 2 bytes each 4*2
-  var instructiondv = new DataView(instructionBuffer); //make data view
+  //var instructionBuffer = new ArrayBuffer(8); //4 Elements at 2 bytes each 4*2
+  //var instructiondv = new DataView(instructionBuffer); //make data view
   
-  instructiondv.setUint16(0,0x8401,true);
-  instructiondv.setUint16(2,0x8401);
-  instructiondv.setUint16(4,0x8401);
-  instructiondv.setUint16(6,0x8781);
+  RAMdv.setUint16(0,0x8401,true);
+  RAMdv.setUint16(2,0x8401,true);
+  RAMdv.setUint16(4,0x8401,true);
+  RAMdv.setUint16(6,0x8781,true);
   //console.log(instructiondv.getUint16(0,true));
   //console.log(instructiondv.getUint16(6,true));
-  
 
-  for(inst in array){
+
+  while(inst in array){ //incomplete, need to rewrite cond
     console.log(partInst(array[inst]));
   }
-  console.log(instructiondv.byteLength/Uint16Array.BYTES_PER_ELEMENT);
+  //Get number of instructions
+  //console.log(instructiondv.byteLength/Uint16Array.BYTES_PER_ELEMENT);
 };
 
 //start main!
